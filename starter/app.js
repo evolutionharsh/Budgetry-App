@@ -91,6 +91,16 @@ var UIController = (function() {
             </div>
             </div> */
         },
+
+        clearFields: function() {
+          var fields,fieldsArr;
+          fields = document.querySelectorAll(DOMstrings.inputDescription + ',' + DOMstrings.inputValue);
+          fieldsArr = Array.prototype.slice.call(fields);
+          fieldsArr.forEach(function(current, index,array) {
+              current.value = "";
+          });
+          fieldsArr[0].focus();
+        }, 
         getDOMstrings: function() {
             return DOMstrings;
         }
@@ -116,6 +126,7 @@ var controller = (function(budgetCtrl,UICtrl) {
         input = UICtrl.getInput();
         newItem = budgetCtrl.addItem(input.type,input.description,input.value);
         UICtrl.addListItem(newItem, input.type);
+        UICtrl.clearFields();
        //console.log(input);
     };
     return {
